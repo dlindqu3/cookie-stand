@@ -66,9 +66,10 @@ let tokyoInfo = {
   avgCookiesPerCustomer: 1.2, 
   customersPerHour: [],
   cookiesPurchasedPerHour: [], 
+  totalCookiesPerDay: 0,
   getCustomersPerHour: function(){
     for (let i = 0; i < storeHours.length; i++){
-    let currentHourCustomers = randomCustomerNum(23, 65);
+    let currentHourCustomers = randomCustomerNum(3, 24);
     this.customersPerHour.push(currentHourCustomers);
     }
   },
@@ -79,22 +80,33 @@ let tokyoInfo = {
       this.cookiesPurchasedPerHour.push(resultB); 
     }
   },
+  getTotalCookiesPurchased: function(){
+    for (let i = 0; i < this.cookiesPurchasedPerHour.length; i++){
+      this.totalCookiesPerDay += this.cookiesPurchasedPerHour[i]; 
+    }
+  },
   render: function (){
     let currentH1 = document.getElementById('tokyo-hourly-sales'); 
     currentH1.innerText = this.cityName; 
     let h1Elem = document.createElement('h1'); 
     h1Elem.textContent = this.cityName; 
     let list = document.getElementById("tokyo-list"); 
-    for (let i = 0; i < storeHours.length; i++){
+    for (let i = 0; i < storeHours.length + 1; i++){
       let li = document.createElement('li');
+      if (i === storeHours.length){
+        li.innerText = `Total: ${tokyoInfo.totalCookiesPerDay} cookies`; 
+        list.appendChild(li); 
+      } else {
       li.innerText = `${storeHours[i]}: ${tokyoInfo.cookiesPurchasedPerHour[i]} cookies`;
       list.appendChild(li); 
+      }
     }
   }
 }
 
 tokyoInfo.getCustomersPerHour(); 
 tokyoInfo.getCookiesPurchasedPerHour(); 
+tokyoInfo.getTotalCookiesPurchased(); 
 console.log(tokyoInfo); 
 tokyoInfo.render();
 
@@ -107,9 +119,10 @@ let dubaiInfo = {
   avgCookiesPerCustomer: 3.7, 
   customersPerHour: [],
   cookiesPurchasedPerHour: [], 
+  totalCookiesPerDay: 0,
   getCustomersPerHour: function(){
     for (let i = 0; i < storeHours.length; i++){
-    let currentHourCustomers = randomCustomerNum(23, 65);
+    let currentHourCustomers = randomCustomerNum(11, 38);
     this.customersPerHour.push(currentHourCustomers);
     }
   },
@@ -118,6 +131,11 @@ let dubaiInfo = {
       let resultA = this.avgCookiesPerCustomer * this.customersPerHour[i]; 
       let resultB = Math.round(resultA); 
       this.cookiesPurchasedPerHour.push(resultB); 
+    }
+  },
+  getTotalCookiesPurchased: function(){
+    for (let i = 0; i < this.cookiesPurchasedPerHour.length; i++){
+      this.totalCookiesPerDay += this.cookiesPurchasedPerHour[i]; 
     }
   },
   render: function (){
@@ -126,20 +144,26 @@ let dubaiInfo = {
     let h1Elem = document.createElement('h1'); 
     h1Elem.textContent = this.cityName; 
     let list = document.getElementById("dubai-list"); 
-    for (let i = 0; i < storeHours.length; i++){
+    for (let i = 0; i < storeHours.length + 1; i++){
       let li = document.createElement('li');
+      if (i === storeHours.length){
+        li.innerText = `Total: ${dubaiInfo.totalCookiesPerDay} cookies`; 
+        list.appendChild(li); 
+      } else {
       li.innerText = `${storeHours[i]}: ${dubaiInfo.cookiesPurchasedPerHour[i]} cookies`;
       list.appendChild(li); 
+      }
     }
   }
 }
 
 dubaiInfo.getCustomersPerHour(); 
 dubaiInfo.getCookiesPurchasedPerHour(); 
+dubaiInfo.getTotalCookiesPurchased(); 
 console.log(dubaiInfo); 
 dubaiInfo.render();
 
-// //paris 
+//paris
 
 let parisInfo = {
   cityName: 'Paris', 
@@ -148,9 +172,10 @@ let parisInfo = {
   avgCookiesPerCustomer: 2.3, 
   customersPerHour: [],
   cookiesPurchasedPerHour: [], 
+  totalCookiesPerDay: 0,
   getCustomersPerHour: function(){
     for (let i = 0; i < storeHours.length; i++){
-    let currentHourCustomers = randomCustomerNum(23, 65);
+    let currentHourCustomers = randomCustomerNum(20, 38);
     this.customersPerHour.push(currentHourCustomers);
     }
   },
@@ -159,6 +184,11 @@ let parisInfo = {
       let resultA = this.avgCookiesPerCustomer * this.customersPerHour[i]; 
       let resultB = Math.round(resultA); 
       this.cookiesPurchasedPerHour.push(resultB); 
+    }
+  },
+  getTotalCookiesPurchased: function(){
+    for (let i = 0; i < this.cookiesPurchasedPerHour.length; i++){
+      this.totalCookiesPerDay += this.cookiesPurchasedPerHour[i]; 
     }
   },
   render: function (){
@@ -167,20 +197,26 @@ let parisInfo = {
     let h1Elem = document.createElement('h1'); 
     h1Elem.textContent = this.cityName; 
     let list = document.getElementById("paris-list"); 
-    for (let i = 0; i < storeHours.length; i++){
+    for (let i = 0; i < storeHours.length + 1; i++){
       let li = document.createElement('li');
+      if (i === storeHours.length){
+        li.innerText = `Total: ${parisInfo.totalCookiesPerDay} cookies`; 
+        list.appendChild(li); 
+      } else {
       li.innerText = `${storeHours[i]}: ${parisInfo.cookiesPurchasedPerHour[i]} cookies`;
       list.appendChild(li); 
+      }
     }
   }
 }
 
 parisInfo.getCustomersPerHour(); 
 parisInfo.getCookiesPurchasedPerHour(); 
+parisInfo.getTotalCookiesPurchased(); 
 console.log(parisInfo); 
 parisInfo.render();
 
-// //lima
+//lima
 
 let limaInfo = {
   cityName: 'Lima', 
@@ -189,9 +225,10 @@ let limaInfo = {
   avgCookiesPerCustomer: 4.6, 
   customersPerHour: [],
   cookiesPurchasedPerHour: [], 
+  totalCookiesPerDay: 0,
   getCustomersPerHour: function(){
     for (let i = 0; i < storeHours.length; i++){
-    let currentHourCustomers = randomCustomerNum(23, 65);
+    let currentHourCustomers = randomCustomerNum(2, 16);
     this.customersPerHour.push(currentHourCustomers);
     }
   },
@@ -202,22 +239,32 @@ let limaInfo = {
       this.cookiesPurchasedPerHour.push(resultB); 
     }
   },
+  getTotalCookiesPurchased: function(){
+    for (let i = 0; i < this.cookiesPurchasedPerHour.length; i++){
+      this.totalCookiesPerDay += this.cookiesPurchasedPerHour[i]; 
+    }
+  },
   render: function (){
     let currentH1 = document.getElementById('lima-hourly-sales'); 
     currentH1.innerText = this.cityName; 
     let h1Elem = document.createElement('h1'); 
     h1Elem.textContent = this.cityName; 
     let list = document.getElementById("lima-list"); 
-    for (let i = 0; i < storeHours.length; i++){
+    for (let i = 0; i < storeHours.length + 1; i++){
       let li = document.createElement('li');
+      if (i === storeHours.length){
+        li.innerText = `Total: ${limaInfo.totalCookiesPerDay} cookies`; 
+        list.appendChild(li); 
+      } else {
       li.innerText = `${storeHours[i]}: ${limaInfo.cookiesPurchasedPerHour[i]} cookies`;
       list.appendChild(li); 
+      }
     }
   }
 }
 
 limaInfo.getCustomersPerHour(); 
 limaInfo.getCookiesPurchasedPerHour(); 
+limaInfo.getTotalCookiesPurchased(); 
 console.log(limaInfo); 
 limaInfo.render();
-  
