@@ -13,6 +13,7 @@ let seattleInfo = {
   avgCookiesPerCustomer: 6.3, 
   customersPerHour: [],
   cookiesPurchasedPerHour: [], 
+  totalCookiesPerDay: 0,
   getCustomersPerHour: function(){
     for (let i = 0; i < storeHours.length; i++){
     let currentHourCustomers = randomCustomerNum(23, 65);
@@ -26,22 +27,33 @@ let seattleInfo = {
       this.cookiesPurchasedPerHour.push(resultB); 
     }
   },
+  getTotalCookiesPurchased: function(){
+    for (let i = 0; i < this.cookiesPurchasedPerHour.length; i++){
+      this.totalCookiesPerDay += this.cookiesPurchasedPerHour[i]; 
+    }
+  },
   render: function (){
     let currentH1 = document.getElementById('seattle-hourly-sales'); 
     currentH1.innerText = this.cityName; 
     let h1Elem = document.createElement('h1'); 
     h1Elem.textContent = this.cityName; 
     let list = document.getElementById("seattle-list"); 
-    for (let i = 0; i < storeHours.length; i++){
+    for (let i = 0; i < storeHours.length + 1; i++){
       let li = document.createElement('li');
+      if (i === storeHours.length){
+        li.innerText = `Total: ${seattleInfo.totalCookiesPerDay} cookies`; 
+        list.appendChild(li); 
+      } else {
       li.innerText = `${storeHours[i]}: ${seattleInfo.cookiesPurchasedPerHour[i]} cookies`;
       list.appendChild(li); 
+      }
     }
   }
 }
 
 seattleInfo.getCustomersPerHour(); 
 seattleInfo.getCookiesPurchasedPerHour(); 
+seattleInfo.getTotalCookiesPurchased(); 
 console.log(seattleInfo); 
 seattleInfo.render();
 
