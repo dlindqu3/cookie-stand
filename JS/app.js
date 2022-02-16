@@ -38,6 +38,10 @@ City.prototype.getTotalCookiesPurchased = function (){
   }
 }
 
+//Wednesday: 
+//1. finish lab 07: add "daily location total" sum column at right of table 
+
+
 
 // let boston = new City ('Boston', 5, 50, 20); 
 // boston.getCustomersPerHour(); 
@@ -51,28 +55,28 @@ seattle.getCustomersPerHour();
 seattle.getCookiesPurchasedPerHour(); 
 seattle.getTotalCookiesPurchased(); 
 console.log(seattle); 
-console.log(myCities); 
+// console.log(myCities); 
 
 let tokyo = new City ('Tokyo', 3, 24, 1.2); 
 tokyo.getCustomersPerHour(); 
 tokyo.getCookiesPurchasedPerHour(); 
 tokyo.getTotalCookiesPurchased(); 
 console.log(tokyo); 
-console.log(myCities); 
+// console.log(myCities); 
 
 let dubai = new City ('Dubai', 11, 38, 3.7); 
 dubai.getCustomersPerHour(); 
 dubai.getCookiesPurchasedPerHour(); 
 dubai.getTotalCookiesPurchased(); 
 console.log(dubai); 
-console.log(myCities); 
+// console.log(myCities); 
 
 let paris = new City ('Paris', 20, 38, 2.3); 
 paris.getCustomersPerHour(); 
 paris.getCookiesPurchasedPerHour(); 
 paris.getTotalCookiesPurchased(); 
 console.log(paris); 
-console.log(myCities); 
+// console.log(myCities); 
 
 let lima = new City ('Lima', 2, 16, 4.6); 
 lima.getCustomersPerHour(); 
@@ -91,12 +95,19 @@ function renderTableMain (){
     tableData.textContent = currentCity.cityName;
     parentElement.appendChild(currentRow); 
     currentRow.appendChild(tableData); 
-    for (let j = 0; j < currentCity.cookiesPurchasedPerHour.length; j++){
-        let currentDatum = currentCity.cookiesPurchasedPerHour[j];
-        let currentDatumCell = document.createElement('td'); 
-        currentDatumCell.textContent = currentDatum; 
-        currentRow.appendChild(currentDatumCell); 
+
+
+    for (let j = 0; j < currentCity.cookiesPurchasedPerHour.length ; j++){
+      let currentDatum = currentCity.cookiesPurchasedPerHour[j];
+      let currentDatumCell = document.createElement('td'); 
+      currentDatumCell.textContent = currentDatum; 
+      currentRow.appendChild(currentDatumCell); 
     }
+    // for (let k = 0; k < myCities.length; k++){
+      let currentTotal = document.createElement('td');
+      currentTotal.textContent = myCities[i].totalCookiesPerDay;
+      currentRow.appendChild(currentTotal);
+    // }
   }
 } 
 
@@ -113,7 +124,24 @@ function renderTableHeader(){
     currentTableHeader.textContent = currentTime; 
     tableHeading.appendChild(currentTableHeader); 
   }
+  //Daily Location Total
+  let dailyLocTot = document.createElement('th'); 
+  tableHeading.appendChild(dailyLocTot); 
+  dailyLocTot.textContent = 'Daily Location Total'; 
 }
+
+// function renderTableFooter (){
+//   let tableFooter = document.createElement('tfoot'); 
+//   let tableRow = document.createElement('tr'); 
+//   tableFooter.appendChild(tableRow); 
+//   let tableData = document.createElement('td');
+//   for (let i = 0; i < Cities.length; i++){
+//     let currentCity = Cities[i]; 
+//     let columnTotal = 0; 
+//     for (let j = 0; j < currentCity.cookiesPurchasedPerHour.length; j++){
+//       let 
+//   }
+// }
 
 renderTableHeader(); 
 renderTableMain(); 
