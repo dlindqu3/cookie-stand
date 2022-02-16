@@ -61,62 +61,68 @@ console.log(tokyo);
 console.log(myCities); 
 
 let dubai = new City ('Dubai', 11, 38, 3.7); 
-tokyo.getCustomersPerHour(); 
-tokyo.getCookiesPurchasedPerHour(); 
-tokyo.getTotalCookiesPurchased(); 
-console.log(tokyo); 
+dubai.getCustomersPerHour(); 
+dubai.getCookiesPurchasedPerHour(); 
+dubai.getTotalCookiesPurchased(); 
+console.log(dubai); 
 console.log(myCities); 
 
 let paris = new City ('Paris', 20, 38, 2.3); 
-tokyo.getCustomersPerHour(); 
-tokyo.getCookiesPurchasedPerHour(); 
-tokyo.getTotalCookiesPurchased(); 
-console.log(tokyo); 
+paris.getCustomersPerHour(); 
+paris.getCookiesPurchasedPerHour(); 
+paris.getTotalCookiesPurchased(); 
+console.log(paris); 
 console.log(myCities); 
 
 let lima = new City ('Lima', 2, 16, 4.6); 
-tokyo.getCustomersPerHour(); 
-tokyo.getCookiesPurchasedPerHour(); 
-tokyo.getTotalCookiesPurchased(); 
-console.log(tokyo); 
+lima.getCustomersPerHour(); 
+lima.getCookiesPurchasedPerHour(); 
+lima.getTotalCookiesPurchased(); 
+console.log(lima); 
 console.log(myCities); 
 
+const parentElement = document.getElementById('sales-table'); 
+
 function renderTableMain (){
-  const parentElement = document.getElementById('sales-table'); 
   for (let i = 0; i < myCities.length; i++){
     let currentCity = myCities[i]; 
     let currentRow = document.createElement('tr');  
-    currentRow.textContent = currentCity.cityName;
+    let tableData = document.createElement('td'); 
+    tableData.textContent = currentCity.cityName;
     parentElement.appendChild(currentRow); 
-  }; 
-  for (let j = 0; j < myCities.length; j++){
-    let currentCity2 = myCities[j]; 
-    for (let k = 0; k < currentCity2.cookiesPurchasedPerHour.length; k++){
-      let currentDatum = document.createElement('td'); 
-      currentDatum.textContent = currentCity2.cookiesPurchasedPerHour[k]; 
-      parentElement.appendChild(currentDatum); 
+    currentRow.appendChild(tableData); 
+    for (let j = 0; j < currentCity.cookiesPurchasedPerHour.length; j++){
+        let currentDatum = currentCity.cookiesPurchasedPerHour[j];
+        let currentDatumCell = document.createElement('td'); 
+        currentDatumCell.textContent = currentDatum; 
+        currentRow.appendChild(currentDatumCell); 
     }
   }
 } 
 
-//questions: 
-//1. get the data in each td 
-//2. AC without the P for now? 
-
-renderTableMain(); 
 
 function renderTableHeader(){
-  const parentElement = document.getElementById('sales-table');
+  let tableHeading = document.createElement('tr');
+  let cityHeading = document.createElement('th');
+  parentElement.appendChild(tableHeading); 
+  tableHeading.appendChild(cityHeading); 
+  cityHeading.textContent = 'City Names'; 
   for (let i = 0; i < storeHours.length; i++){
     let currentTime = storeHours[i]; 
-
+    let currentTableHeader = document.createElement('th'); 
+    currentTableHeader.textContent = currentTime; 
+    tableHeading.appendChild(currentTableHeader); 
   }
 }
 
+renderTableHeader(); 
+renderTableMain(); 
+
+
 //function for the table header row is by itself 
 //function for the table footer row is by itself 
-//function for tr (names of cities) is not by itself 
-//function to render whole table will call the separate header row function 
+//function for tr (names of cities) is in TableMain 
+
 
 
 
