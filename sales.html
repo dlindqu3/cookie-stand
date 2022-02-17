@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sales</title>
-  <link rel="stylesheet" href="mystyle.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -18,6 +18,30 @@
 
   <table id="sales-table">
   </table>
+
+  <form id="addStoreForm">
+    <fieldset>
+      <legend>Store info:</legend>
+
+      <label for="cityName">City name: </label>
+      <input type="text" name="cityName" id="cityName">
+      <p></p>
+
+      <label for="minHourlyCustomers">Minimum hourly customers:</label>
+      <input type="text" name="minHourlyCustomers" id="minHourlyCustomers">
+      <p></p>
+
+      <label for="maxHourlyCustomers">Maximum hourly customers:</label>
+      <input type="text" name="maxHourlyCustomers" id="maxHourlyCustomers">
+      <p></p>
+
+      <label for="avgCookiesPerCustomer">Average cookies per customer:</label>
+      <input type="text" name="avgCookiesPerCustomer" id="avgCookiesPerCustomer">
+
+    </fieldset>
+
+    <button type="submit">Submit</button>
+  </form>
 <!-- 
   <h1 id="seattle-hourly-sales"></h1>
     <ul id="seattle-list">
