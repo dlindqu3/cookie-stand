@@ -1,3 +1,5 @@
+'use strict'; 
+
 let storeHours = ['6am', '7am', '8am', '9am', '10am', '11am', '12am', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];  
 
 function randomCustomerNum (min, max){
@@ -145,6 +147,51 @@ function renderTableHeader(){
 
 renderTableHeader(); 
 renderTableMain(); 
+
+const addStoreForm = document.getElementById('addStoreForm');
+
+function handleSubmit(event){
+  event.preventDefault(); 
+
+    let cityName = event.target.cityName.value; 
+    let minHourlyCustomers = event.target.minHourlyCustomers.value;
+    let maxHourlyCustomers = event.target.maxHourlyCustomers.value;
+    let avgCookiesPerCustomer = event.target.avgCookiesPerCustomer.value; 
+
+    const newCity = new City(cityName, minHourlyCustomers, maxHourlyCustomers, avgCookiesPerCustomer);
+    newCity.getCustomersPerHour(); 
+    newCity.getCookiesPurchasedPerHour(); 
+    newCity.getTotalCookiesPurchased();
+     
+    //table id is "sales-table"; the table is saved as a constant parentElement
+
+    let newRow = document.createElement('tr');
+    let tableData = document.createElement('td');
+    tableData.textContent = newCity.cityName;
+    parentElement.appendChild(newRow); 
+    newRow.appendChild(tableData); 
+
+    for (let j = 0; j < newCity.cookiesPurchasedPerHour.length ; j++){
+      let currentDatum = newCity.cookiesPurchasedPerHour[j];
+      let currentDatumCell = document.createElement('td'); 
+      currentDatumCell.textContent = currentDatum; 
+      newRow.appendChild(currentDatumCell); 
+    }
+
+      let currentTotal = document.createElement('td');
+      currentTotal.textContent = newCity.totalCookiesPerDay;
+      newRow.appendChild(currentTotal);
+
+    parentElement.appendChild(newRow); 
+
+    addStoreForm.reset(); 
+  
+}
+
+addStoreForm.addEventListener('submit', handleSubmit); 
+  
+
+
 
 
 //function for the table header row is by itself 
