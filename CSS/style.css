@@ -11,6 +11,15 @@ h1, h3 {
   color: red;
 } */
 
-#sales-table {
-  font: sans-serif;
+
+
+body {
+  font-family: sans-serif; 
+  background: azure; 
+}
+
+table {
+  background-color: turquoise; 
+  border: solid;
+  font-family: sans-serif;
 }
