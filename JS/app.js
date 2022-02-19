@@ -132,21 +132,42 @@ function renderTableHeader(){
   dailyLocTot.textContent = 'Daily Location Total'; 
 }
 
-// function renderTableFooter (){
-//   let tableFooter = document.createElement('tfoot'); 
-//   let tableRow = document.createElement('tr'); 
-//   tableFooter.appendChild(tableRow); 
-//   let tableData = document.createElement('td');
-//   for (let i = 0; i < Cities.length; i++){
-//     let currentCity = Cities[i]; 
-//     let columnTotal = 0; 
-//     for (let j = 0; j < currentCity.cookiesPurchasedPerHour.length; j++){
-//       let 
-//   }
-// }
+let myFooterRow = document.createElement('tr'); 
+
+
+function renderTableFooter(){
+  let grandTotal = 0; 
+  
+
+  parentElement.appendChild(myFooterRow); 
+  let hourlyTotals = document.createElement('td');
+  hourlyTotals.textContent = 'Hourly Totals'; 
+  myFooterRow.appendChild(hourlyTotals); 
+
+  
+  for (let i = 0; i < storeHours.length; i++){
+
+    let total = 0; 
+
+    for (let m = 0; m < myCities.length; m++){
+      let currentCity = myCities[m]; 
+      console.log(currentCity); 
+      total += currentCity.cookiesPurchasedPerHour[i]; 
+      grandTotal += total; 
+    }
+    let currentHourTotalCell = document.createElement('td'); 
+      currentHourTotalCell.textContent = total; 
+      myFooterRow.appendChild(currentHourTotalCell); 
+  }
+  let grandTotalCell = document.createElement('td'); 
+      grandTotalCell.textContent = grandTotal; 
+      myFooterRow.appendChild(grandTotalCell); 
+}
+
 
 renderTableHeader(); 
 renderTableMain(); 
+renderTableFooter(); 
 
 const addStoreForm = document.getElementById('addStoreForm');
 
@@ -189,7 +210,10 @@ function handleSubmit(event){
 }
 
 addStoreForm.addEventListener('submit', handleSubmit); 
-  
+
+//Friday: 
+//1. add an hourly total row at the bottom of the table 
+//2. update CSS (see 10b instructions)
 
 
 ///asdfasasdf
